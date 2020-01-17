@@ -9,30 +9,30 @@
 ## Compontents Directory
 
 - [x] Icon
-- [] Button
+- [ ] Button
   - [x] Default
-  - [] Outline
+  - [ ] Outline
   - [x] Control
-  - [] With Icon
-  - [] Icon Only
-- [] Checkbox
-- [] Radio
-- [] Toggle
-- [] Typography
+  - [ ] With Icon
+  - [ ] Icon Only
+- [ ] Checkbox
+- [ ] Radio
+- [ ] Toggle
+- [ ] Typography
 - [x] Spinner
-- [] Avatar
-- [] Menu
-- [] Footer
-- [] Sider
-- [] Drawer
-- [] ButtonGroup
-- [] List
-- [] Table
-- [] Tooltip
-- [] Popup
-- [] Modal
-- [] Card
-- [] Extras
+- [ ] Avatar
+- [ ] Menu
+- [ ] Footer
+- [ ] Sider
+- [ ] Drawer
+- [ ] ButtonGroup
+- [ ] List
+- [ ] Table
+- [ ] Tooltip
+- [ ] Popup
+- [ ] Modal
+- [ ] Card
+- [ ] Extras
 
 
 ## Install
