@@ -35,6 +35,14 @@
 - [ ] Extras
 
 
+## TODO
+- [ ] Update README.md
+- [ ] Add Contribution Guide.
+- [ ] Add Installation Guide.
+- [ ] Add Pipelines for builds
+- [ ] Provsioning
+- [ ] Build Docs website
+
 ## Install
 
 ```bash
