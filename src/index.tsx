@@ -1,23 +1,7 @@
-/**
- * @class ExampleComponent
- */
+export { default as Button } from 'components/Button';
 
-import * as React from 'react'
+export { default as Icon } from 'components/Icon';
 
-import styles from './styles.css'
+export { default as Spinner } from 'components/Spinner';
 
-export type Props = { text: string }
-
-export default class ExampleComponent extends React.Component<Props> {
-  render() {
-    const {
-      text
-    } = this.props
-
-    return (
-      <div className={styles.test}>
-        Example Component: {text}
-      </div>
-    )
-  }
-}
+export * from 'theme';
