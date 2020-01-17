@@ -59,4 +59,4 @@ class Example extends React.Component {
 
 ## License
 
-MIT © [Abdallah Ebrahim](https://github.com/Abdallah Ebrahim)
+MIT © [Abdallah Ebrahim](https://github.com/AbdallahMezo) - [Akveo](https://www.akveo.com/)
