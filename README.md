@@ -4,6 +4,37 @@
 
 [![NPM](https://img.shields.io/npm/v/evact.svg)](https://www.npmjs.com/package/evact) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+> Library is still under-development
+
+## Compontents Directory
+
+- [x] Icon
+- [] Button
+  - [x] Default
+  - [] Outline
+  - [x] Control
+  - [] With Icon
+  - [] Icon Only
+- [] Checkbox
+- [] Radio
+- [] Toggle
+- [] Typography
+- [x] Spinner
+- [] Avatar
+- [] Menu
+- [] Footer
+- [] Sider
+- [] Drawer
+- [] ButtonGroup
+- [] List
+- [] Table
+- [] Tooltip
+- [] Popup
+- [] Modal
+- [] Card
+- [] Extras
+
+
 ## Install
 
 ```bash
