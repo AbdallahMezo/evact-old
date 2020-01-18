@@ -83,8 +83,15 @@ const getDisabledStyles = () => `
 const BaseStyle = (props: ButtonProps) => css`
   text-transform: uppercase;
   border-radius: 4px;
-  border: solid;
+  border-style: solid;
   border-width: 0.0625rem;
+  line-height: 1rem;
+  text-align: center;
+  display: inline-flex;
+  align-item: center;
+  justify-content: center;
+  white-space: no-wrap;
+  vertical-align: middle;
   border-color: ${colorStringFromType(props)};
   cursor: pointer;
   font-weight: 700;
@@ -146,6 +153,17 @@ const GhostButton = (props: ButtonProps) => css`
   }
 `;
 
+const IconButton = (props: ButtonProps) => css`
+  svg {
+    ${props.iconPlacement && props.iconPlacement === 'right'
+      ? 'margin-left: 0.75rem'
+      : 'margin-right: 0.75rem'};
+    fill: ${colorStringFromType(props)};
+    width: 1rem;
+    height: 1rem;
+  }
+`;
+
 // TODO:
 // - Icon Button
 // - With Icon
@@ -156,6 +174,7 @@ const StyledButton = styled.button<ButtonProps>`
   ${props => ActiveStyle(props)}
   ${props => isOutline(props) && OutlineButton}
   ${props => isGhost(props) && GhostButton}
+  ${props => props.icon && IconButton}
   ${transitions(['border-color', 'box-shadow', 'background-color'], 0.15, 'ease-in')}
 `;
 

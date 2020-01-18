@@ -24,16 +24,26 @@ export interface ButtonProps extends ThemeConsumerProps {
   disabled?: boolean;
   ghost?: boolean;
   outline?: boolean;
+  iconPlacement?: 'right' | 'left';
 }
 
 function Button(props: ButtonProps): JSX.Element {
   const { children, icon, isLoading } = props;
-  function renderButtonWithIcon() {
+
+  function renderButtonWithIcon(icon: string) {
+    if (props.iconPlacement && props.iconPlacement === 'right') {
+      return (
+        <>
+          {children}
+          <Icon type={icon} />
+        </>
+      );
+    }
     return (
-      <StyledButton {...props}>
-        <Icon type={icon as string} width="12" />
+      <>
+        <Icon type={icon} />
         {children}
-      </StyledButton>
+      </>
     );
   }
 
@@ -50,7 +60,7 @@ function Button(props: ButtonProps): JSX.Element {
 
   function renderButton() {
     if (icon) {
-      return renderButtonWithIcon();
+      return <StyledButton {...props}>{renderButtonWithIcon(icon)}</StyledButton>;
     }
     if (isLoading) {
       return renderButtonWithLoading();
