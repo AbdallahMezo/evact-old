@@ -1,16 +1,20 @@
 import styled, { css } from 'styled-components';
-import { ButtonProps, ButtonStatus } from 'components/Button';
+import { ButtonProps } from 'components/Button';
 import { lightenDarkenColor, hexToRGBA, Size } from 'utils';
 import { transitions } from 'utils/styles';
 import { defaultTheme } from 'theme/defaultTheme';
 
 const boxShadow = `box-shadow: 0 0 0px 0.375rem rgba(143, 155, 179, 0.16);`;
 
-const isControl = (status: ButtonStatus) => status === 'control';
+const isControl = (props: ButtonProps) => props.status && props.status === 'control';
 
 const isGhost = (props: ButtonProps) => props.ghost;
 
 const isOutline = (props: ButtonProps) => props.outline;
+
+const isIconOnly = (props: ButtonProps) => props.iconOnly;
+
+const isIconButton = (props: ButtonProps) => props.children && props.icon;
 
 const getPadding = (size: Size): string => {
   switch (size) {
@@ -59,6 +63,16 @@ const getButtonSize = (props: ButtonProps) => `
   font-size: ${getFontSize(props.size || 'medium')};
 `;
 
+const getIconColor = (props: ButtonProps): string => {
+  if (isOutline(props)) {
+    return colorStringFromType(props);
+  }
+  if (isControl(props)) {
+    '#000';
+  }
+  return `#fff`;
+};
+
 const ButtonControlColors = () => `
   background-color: transparent;
   color: #000;
@@ -66,7 +80,7 @@ const ButtonControlColors = () => `
 
 const getButtonColors = (props: ButtonProps) => `
   ${
-    props.status && isControl(props.status)
+    props.status && isControl(props)
       ? ButtonControlColors()
       : `
         background-color: ${colorStringFromType(props)};
@@ -97,7 +111,7 @@ const BaseStyle = (props: ButtonProps) => css`
   font-weight: 700;
   padding: ${getPadding(props.size || 'medium')};
   ${!isOutline(props) && getButtonColors(props)};
-  ${props.status && isControl(props.status) && ButtonControlColors()};
+  ${isControl(props) && ButtonControlColors()};
   ${getButtonSize(props)};
   ${props.disabled && getDisabledStyles()};
 `;
@@ -164,6 +178,17 @@ const IconButton = (props: ButtonProps) => css`
   }
 `;
 
+const IconOnly = (props: ButtonProps) => {
+  return `
+  svg {
+    margin: 0;
+    fill: ${getIconColor(props)};
+    width: 1rem;
+    height: 1rem;
+  }
+`;
+};
+
 // TODO:
 // - Icon Button
 const StyledButton = styled.button<ButtonProps>`
@@ -173,7 +198,8 @@ const StyledButton = styled.button<ButtonProps>`
   ${props => ActiveStyle(props)}
   ${props => isOutline(props) && OutlineButton}
   ${props => isGhost(props) && GhostButton}
-  ${props => props.icon && IconButton}
+  ${props => isIconButton(props) && IconButton}
+  ${props => isIconOnly(props) && IconOnly}
   ${transitions(['border-color', 'box-shadow', 'background-color'], 0.15, 'ease-in')}
 `;
 

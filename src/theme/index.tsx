@@ -27,7 +27,7 @@ function ThemeProvider(props: ThemeProviderProps) {
 }
 
 export interface ThemeConsumerProps {
-  children: React.ReactChild;
+  children?: React.ReactChild;
   theme?: Theme;
 }
 

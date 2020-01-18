@@ -16,7 +16,7 @@ export type ButtonStatus =
 
 export interface ButtonProps extends ThemeConsumerProps {
   status?: ButtonStatus;
-  children: any;
+  children?: any;
   icon?: string;
   isLoading?: boolean;
   className?: string;
@@ -25,10 +25,12 @@ export interface ButtonProps extends ThemeConsumerProps {
   ghost?: boolean;
   outline?: boolean;
   iconPlacement?: 'right' | 'left';
+  iconOnly?: boolean;
 }
 
 function Button(props: ButtonProps): JSX.Element {
   const { children, icon, isLoading } = props;
+  console.log('=== : props', props);
 
   function renderButtonWithIcon(icon: string) {
     if (props.iconPlacement && props.iconPlacement === 'right') {
@@ -59,6 +61,11 @@ function Button(props: ButtonProps): JSX.Element {
   }
 
   function renderButton() {
+    if (!children && icon) {
+      <StyledButton iconOnly {...props}>
+        <Icon type={icon} />
+      </StyledButton>;
+    }
     if (icon) {
       return <StyledButton {...props}>{renderButtonWithIcon(icon)}</StyledButton>;
     }
