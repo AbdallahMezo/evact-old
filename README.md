@@ -13,7 +13,7 @@
   - [x] Default
   - [x] Outline
   - [x] Control
-  - [ ] With Icon
+  - [x] With Icon
   - [ ] Icon Only
 - [ ] Checkbox
 - [ ] Radio

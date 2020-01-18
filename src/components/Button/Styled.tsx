@@ -166,7 +166,6 @@ const IconButton = (props: ButtonProps) => css`
 
 // TODO:
 // - Icon Button
-// - With Icon
 const StyledButton = styled.button<ButtonProps>`
   ${props => BaseStyle(props)}
   ${props => HoverStyle(props)}
