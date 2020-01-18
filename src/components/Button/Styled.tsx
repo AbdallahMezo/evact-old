@@ -189,8 +189,6 @@ const IconOnly = (props: ButtonProps) => {
 `;
 };
 
-// TODO:
-// - Icon Button
 const StyledButton = styled.button<ButtonProps>`
   ${props => BaseStyle(props)}
   ${props => HoverStyle(props)}

@@ -9,12 +9,7 @@
 ## Compontents Directory
 
 - [x] Icon
-- [ ] Button
-  - [x] Default
-  - [x] Outline
-  - [x] Control
-  - [x] With Icon
-  - [ ] Icon Only
+- [x] Button
 - [ ] Checkbox
 - [ ] Radio
 - [ ] Toggle
