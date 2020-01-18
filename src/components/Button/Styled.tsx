@@ -8,7 +8,8 @@ const boxShadow = `box-shadow: 0 0 0px 0.375rem rgba(143, 155, 179, 0.16);`;
 
 const isControl = (status: ButtonStatus) => status === 'control';
 
-// @ts-ignore
+const isGhost = (props: ButtonProps) => props.ghost;
+
 const isOutline = (props: ButtonProps) => props.outline;
 
 const getPadding = (size: Size): string => {
@@ -130,6 +131,21 @@ const OutlineButton = (props: ButtonProps) => css`
   }
 `;
 
+const GhostButton = (props: ButtonProps) => css`
+  color: ${colorStringFromType(props)};
+  background-color: transparent;
+  border-color: transparent;
+  &:hover {
+    background-color: ${hexToRGBA(colorStringFromType(props), 0.08)};
+    border-color: transparent;
+  }
+  &:active,
+  :focus {
+    background-color: ${hexToRGBA(colorStringFromType(props), 0.16)};
+    border-color: ${hexToRGBA(colorStringFromType(props), 0.4)};
+  }
+`;
+
 // TODO:
 // - Icon Button
 // - With Icon
@@ -139,7 +155,8 @@ const StyledButton = styled.button<ButtonProps>`
   ${props => FocusStyle(props)}
   ${props => ActiveStyle(props)}
   ${props => isOutline(props) && OutlineButton}
-  ${transitions(['border-color', 'box-shadow', 'background-color'], 0.15, 'linear')}
+  ${props => isGhost(props) && GhostButton}
+  ${transitions(['border-color', 'box-shadow', 'background-color'], 0.15, 'ease-in')}
 `;
 
 export { StyledButton };

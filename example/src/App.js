@@ -6,7 +6,7 @@ export default class App extends Component {
   render () {
     return (
         <div style={{padding: 100}}>
-          <Button status="primary" outline size="medium" >Primary</Button><br />
+          <Button status="primary" outline size="medium" ghost>Primary</Button><br />
           <br />
           <Button status="danger" outline size="medium" >Danger</Button><br />
           <br />
