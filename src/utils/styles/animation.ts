@@ -19,5 +19,7 @@ export const spin = css`
 `;
 
 export const transitions = (properties: string[] | string, time: number, type: string) => `
-  transition: ${extractArray(properties)} ${time}s ${type} ;
+  transition-property: ${extractArray(properties)};
+  transition-duration: ${time}s;
+  transition-timing-function: ${type};
 `;

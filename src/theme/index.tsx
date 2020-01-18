@@ -12,7 +12,7 @@ export interface Theme {
     success: string;
     info: string;
     warning: string;
-    error: string;
+    danger: string;
   };
 }
 

@@ -57,6 +57,7 @@ function Button(props: ButtonProps): JSX.Element {
     }
     return <StyledButton {...props}>{children}</StyledButton>;
   }
+
   return <ThemeConsumer>{renderButton()}</ThemeConsumer>;
 }
 

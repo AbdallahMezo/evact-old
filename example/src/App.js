@@ -6,19 +6,29 @@ export default class App extends Component {
   render () {
     return (
         <div style={{padding: 100}}>
-          <Button type="outline" size="tiny" >Tiny</Button><br />
+          <Button status="primary" outline size="medium" >Primary</Button><br />
           <br />
-          <Button type="error" size="small">Error</Button><br />
+          <Button status="danger" outline size="medium" >Danger</Button><br />
           <br />
-          <Button type="success" size="medium">Success</Button><br />
+          <Button status="success" outline size="medium" >Success</Button><br />
           <br />
-          <Button type="info" size="large">Info</Button><br />
+          <Button status="info" outline size="medium" >Info</Button><br />
           <br />
-          <Button type="warning" size="giant">Warning</Button><br />
+          <Button status="warning" outline size="medium" >Warning</Button><br />
           <br />
-          <Button type="control" size="medium">Control</Button><br />
+          <Button status="outline" size="tiny" >Tiny</Button><br />
           <br />
-          <Icon type="github" fill="red" onClick={(e) => console.log(e)}/><br />
+          <Button status="danger" size="small">Error</Button><br />
+          <br />
+          <Button status="success" size="medium">Success</Button><br />
+          <br />
+          <Button status="info" size="large">Info</Button><br />
+          <br />
+          <Button status="warning" size="giant">Warning</Button><br />
+          <br />
+          <Button status="control" size="medium">Control</Button><br />
+          <br />
+          <Icon status="github" fill="red" onClick={(e) => console.log(e)}/><br />
           <Spinner /><br />
         </div>
     )

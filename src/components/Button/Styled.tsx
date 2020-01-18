@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components';
 import { ButtonProps, ButtonStatus } from 'components/Button';
-import { lightenDarkenColor, Size } from 'utils';
-import { transitions } from 'utils/styles/animation';
+import { lightenDarkenColor, hexToRGBA, Size } from 'utils';
+import { transitions } from 'utils/styles';
+import { defaultTheme } from 'theme/defaultTheme';
 
-const boxShadow = `box-shadow: 0 0 0px 8px rgba(143, 155, 179, 0.16);`;
+const boxShadow = `box-shadow: 0 0 0px 0.375rem rgba(143, 155, 179, 0.16);`;
 
 const isControl = (status: ButtonStatus) => status === 'control';
 
@@ -45,12 +46,12 @@ const getFontSize = (size: Size): string => {
 };
 
 const colorStringFromType = (props: ButtonProps): string => {
+  let theme = props.theme || defaultTheme;
   if (props.status === 'control') {
     return 'transparent';
   }
-  // FIXME:
-  // @ts-ignore
-  return props.status ? props.theme.colors[props.status] : props.theme.colors.primary;
+
+  return props.status ? theme.colors[props.status] : theme.colors.primary;
 };
 
 const getButtonSize = (props: ButtonProps) => `
@@ -81,14 +82,16 @@ const getDisabledStyles = () => `
 const BaseStyle = (props: ButtonProps) => css`
   text-transform: uppercase;
   border-radius: 4px;
+  border: solid;
   border-width: 0.0625rem;
   border-color: ${colorStringFromType(props)};
-  border: none;
   cursor: pointer;
   font-weight: 700;
-  padding: ${getPadding(props.size || 'medium')} ${getButtonColors(props)};
-  ${props.status && isControl(props.status) && ButtonControlColors()} ${getButtonSize(props)};
-  ${props.disabled && getDisabledStyles()}
+  padding: ${getPadding(props.size || 'medium')};
+  ${!isOutline(props) && getButtonColors(props)};
+  ${props.status && isControl(props.status) && ButtonControlColors()};
+  ${getButtonSize(props)};
+  ${props.disabled && getDisabledStyles()};
 `;
 
 const HoverStyle = (props: ButtonProps) => css`
@@ -107,25 +110,36 @@ const FocusStyle = (props: ButtonProps) => css`
   }
 `;
 
-const ActiveStyle = (props: ButtonProps) =>
-  css`
-    &:active {
-      ${boxShadow}
-      background-color: ${lightenDarkenColor(colorStringFromType(props), -10)};
-      border-color: ${colorStringFromType(props)};
-    }
-  `;
+const ActiveStyle = (props: ButtonProps) => css`
+  &:active {
+    ${boxShadow}
+    background-color: ${lightenDarkenColor(colorStringFromType(props), -10)};
+    border-color: ${colorStringFromType(props)};
+  }
+`;
+
+const OutlineButton = (props: ButtonProps) => css`
+  color: ${colorStringFromType(props)};
+  background-color: ${hexToRGBA(colorStringFromType(props), 0.08)};
+  &:hover {
+    background-color: ${hexToRGBA(colorStringFromType(props), 0.16)};
+  }
+  &:active,
+  :focus {
+    background-color: ${hexToRGBA(colorStringFromType(props), 0.24)};
+  }
+`;
 
 // TODO:
 // - Icon Button
 // - With Icon
-// - Outline
 const StyledButton = styled.button<ButtonProps>`
   ${props => BaseStyle(props)}
   ${props => HoverStyle(props)}
   ${props => FocusStyle(props)}
   ${props => ActiveStyle(props)}
-  ${transitions(['background, box-shadow, border-color'], 0.15, 'linear')}
+  ${props => isOutline(props) && OutlineButton}
+  ${transitions(['border-color', 'box-shadow', 'background-color'], 0.15, 'linear')}
 `;
 
 export { StyledButton };
