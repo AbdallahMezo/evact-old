@@ -11,7 +11,7 @@
 - [x] Icon
 - [ ] Button
   - [x] Default
-  - [ ] Outline
+  - [x] Outline
   - [x] Control
   - [ ] With Icon
   - [ ] Icon Only
