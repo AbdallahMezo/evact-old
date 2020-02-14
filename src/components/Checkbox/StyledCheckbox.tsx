@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { CheckboxProps } from 'components/Checkbox';
-import { transitions, hexToRGBA, lightenDarkenColor } from 'utils/styles';
+import { transitions, hexToRGBA, lightenDarkenColor, disabled, disabledDark } from 'utils/styles';
 import { defaultTheme } from 'theme/defaultTheme';
 
 const boxShadow = `box-shadow: 0 0 0px 0.375rem rgba(143, 155, 179, 0.16);`;
@@ -49,6 +49,17 @@ const CheckedStyle = (props: CheckboxProps) => css`
   }
 `
 
+const DisabledStyle = (props: CheckboxProps) => css`
+  span:first-of-type {
+    background-color: ${props.checked ? disabledDark : disabled};
+    border-color: rgba(143, 155, 179, 0.24);
+    pointer-events: none;
+  }
+  span:last-of-type {
+    color: rgba(143, 155, 179, 0.48);
+  }
+`
+
 const HoverStyle = (props: CheckboxProps) => css`
   span:first-of-type {
     &:hover {
@@ -84,6 +95,7 @@ const ActiveStyle = (props: CheckboxProps) => css`
 const StyledCheckbox = styled.label<CheckboxProps>`
   ${props => BaseStyle(props)}
   ${props => CheckedStyle(props)}
+  ${props => props.disabled && DisabledStyle(props)}
   ${props => FocusStyle(props)}
   ${props => HoverStyle(props)}
   ${props => ActiveStyle(props)}

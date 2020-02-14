@@ -6,9 +6,9 @@ export default class App extends Component {
   render () {
     return (
         <div style={{padding: 100}}>
-          <Checkbox labelStyle={{ color: 'red', fontSize: '90px'}} label="Check me " onChange={(...checked) => console.log(checked)} aria-label="bla"/><br />
+          <Checkbox labelStyle={{ color: 'red', }} label="Check me " onChange={(...checked) => console.log(checked)} aria-label="bla"/><br />
           <Checkbox status="danger" label="Check me " onChange={(checked) => console.log(checked)}/><br />
-          <Checkbox status="warning" label="Check me" indeterminate onChange={(checked) => console.log(checked)}/><br />
+          <Checkbox status="warning" label="Check me" disabled checked onChange={(...checked) => console.log(checked)}/><br />
           <br />
           <Button status="warning" outline size="medium" isLoading>Success</Button><br />
           <br />

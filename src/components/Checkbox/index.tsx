@@ -11,24 +11,39 @@ export interface CheckboxProps extends ThemeConsumerProps {
   label?: string;
   disabled?: boolean;
   indeterminate?: boolean;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => unknown;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
   labelStyle?: CSSObject
 }
 
 function Checkbox(props: CheckboxProps) {
-  const { onChange, label, checked = false, status, indeterminate } = props;
+  const {
+    onChange,
+    label,
+    checked = false,
+    indeterminate,
+    status,
+    disabled,
+    labelStyle
+  } = props;
 
   const [isChecked, setChecked] = React.useState<boolean>(checked);
 
   function wrappedOnChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const {disabled} = props;
     const { checked } = event.target;
-    setChecked(checked);
-    onChange && onChange(event, checked);
+    !disabled && setChecked(checked);
+    onChange && !disabled && onChange(event, checked);
   }
 
   function renderCheckbox() {
     return (
-      <StyledCheckbox checked={isChecked} status={status} indeterminate={indeterminate}>
+      <StyledCheckbox
+        status={status}
+        indeterminate={indeterminate}
+        checked={isChecked}
+        disabled={disabled}
+        labelStyle={labelStyle}
+      >
         <React.Fragment>
           <input
             type="checkbox"
