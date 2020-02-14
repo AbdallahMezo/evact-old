@@ -35,7 +35,7 @@ function ThemeConsumer(props: ThemeConsumerProps) {
   const { children } = props;
   return (
     <ThemeContext.Consumer>
-      {(theme: Theme) => (
+      {(theme: Theme = defaultTheme) => (
         <StyledThemeProvider theme={theme}>
           <GlobalStyles />
           {children}

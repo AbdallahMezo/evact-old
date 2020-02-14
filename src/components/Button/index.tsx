@@ -1,18 +1,12 @@
 import * as React from 'react';
-import { StyledButton } from './Styled';
-import { Size } from 'utils/types';
+import { StyledButton, colorFromStatus, SpinnerOverlay } from './StyledButton';
+import { Size, Status } from 'utils/types';
 import Icon from 'components/Icon';
 import { ThemeConsumer, ThemeConsumerProps } from 'theme';
+import Spinner from 'components/Spinner';
+import { lightenDarkenColor } from 'utils';
 
-export type ButtonStatus =
-  | 'basic'
-  | 'primary'
-  | 'success'
-  | 'info'
-  | 'warning'
-  | 'danger'
-  | 'outline'
-  | 'control';
+export type ButtonStatus = Status | 'outline' | 'control';
 
 export interface ButtonProps extends ThemeConsumerProps {
   status?: ButtonStatus;
@@ -30,7 +24,6 @@ export interface ButtonProps extends ThemeConsumerProps {
 
 function Button(props: ButtonProps): JSX.Element {
   const { children, icon, isLoading } = props;
-  console.log('=== : props', props);
 
   function renderButtonWithIcon(icon: string) {
     if (props.iconPlacement && props.iconPlacement === 'right') {
@@ -50,12 +43,19 @@ function Button(props: ButtonProps): JSX.Element {
   }
 
   function renderButtonWithLoading() {
+    const { size = 'medium' } = props;
+
     return (
       <StyledButton {...props}>
-        <span>
-          <Icon type="github" />
-        </span>
-        <span>{children}</span>
+        <SpinnerOverlay {...props}>
+          <Spinner
+            size={size}
+            width={20}
+            borderWidth={4}
+            color={lightenDarkenColor(colorFromStatus(props), 10)}
+          />
+        </SpinnerOverlay>
+        {children}
       </StyledButton>
     );
   }

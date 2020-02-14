@@ -50,7 +50,7 @@ const getFontSize = (size: Size): string => {
   }
 };
 
-const colorStringFromType = (props: ButtonProps): string => {
+const colorFromStatus = (props: ButtonProps): string => {
   let theme = props.theme || defaultTheme;
   if (props.status === 'control') {
     return 'transparent';
@@ -65,7 +65,7 @@ const getButtonSize = (props: ButtonProps) => `
 
 const getIconColor = (props: ButtonProps): string => {
   if (isOutline(props)) {
-    return colorStringFromType(props);
+    return colorFromStatus(props);
   }
   if (isControl(props)) {
     '#000';
@@ -83,7 +83,7 @@ const getButtonColors = (props: ButtonProps) => `
     props.status && isControl(props)
       ? ButtonControlColors()
       : `
-        background-color: ${colorStringFromType(props)};
+        background-color: ${colorFromStatus(props)};
         color: #fff;
       `
   }
@@ -95,6 +95,7 @@ const getDisabledStyles = () => `
 `;
 
 const BaseStyle = (props: ButtonProps) => css`
+  position: relative;
   text-transform: uppercase;
   border-radius: 4px;
   border-style: solid;
@@ -106,7 +107,7 @@ const BaseStyle = (props: ButtonProps) => css`
   justify-content: center;
   white-space: no-wrap;
   vertical-align: middle;
-  border-color: ${colorStringFromType(props)};
+  border-color: ${colorFromStatus(props)};
   cursor: pointer;
   font-weight: 700;
   padding: ${getPadding(props.size || 'medium')};
@@ -118,8 +119,8 @@ const BaseStyle = (props: ButtonProps) => css`
 
 const HoverStyle = (props: ButtonProps) => css`
   &:hover {
-    background-color: ${lightenDarkenColor(colorStringFromType(props), 10)};
-    border-color: ${colorStringFromType(props)};
+    background-color: ${lightenDarkenColor(colorFromStatus(props), 10)};
+    border-color: ${colorFromStatus(props)};
   }
 `;
 
@@ -127,43 +128,43 @@ const FocusStyle = (props: ButtonProps) => css`
   &:focus {
     ${boxShadow}
     outline: none;
-    background-color: ${colorStringFromType(props)};
-    border-color: ${colorStringFromType(props)};
+    background-color: ${colorFromStatus(props)};
+    border-color: ${colorFromStatus(props)};
   }
 `;
 
 const ActiveStyle = (props: ButtonProps) => css`
   &:active {
     ${boxShadow}
-    background-color: ${lightenDarkenColor(colorStringFromType(props), -10)};
-    border-color: ${colorStringFromType(props)};
+    background-color: ${lightenDarkenColor(colorFromStatus(props), -10)};
+    border-color: ${colorFromStatus(props)};
   }
 `;
 
 const OutlineButton = (props: ButtonProps) => css`
-  color: ${colorStringFromType(props)};
-  background-color: ${hexToRGBA(colorStringFromType(props), 0.08)};
+  color: ${colorFromStatus(props)};
+  background-color: ${hexToRGBA(colorFromStatus(props), 0.08)};
   &:hover {
-    background-color: ${hexToRGBA(colorStringFromType(props), 0.16)};
+    background-color: ${hexToRGBA(colorFromStatus(props), 0.16)};
   }
   &:active,
   :focus {
-    background-color: ${hexToRGBA(colorStringFromType(props), 0.24)};
+    background-color: ${hexToRGBA(colorFromStatus(props), 0.24)};
   }
 `;
 
 const GhostButton = (props: ButtonProps) => css`
-  color: ${colorStringFromType(props)};
+  color: ${colorFromStatus(props)};
   background-color: transparent;
   border-color: transparent;
   &:hover {
-    background-color: ${hexToRGBA(colorStringFromType(props), 0.08)};
+    background-color: ${hexToRGBA(colorFromStatus(props), 0.08)};
     border-color: transparent;
   }
   &:active,
   :focus {
-    background-color: ${hexToRGBA(colorStringFromType(props), 0.16)};
-    border-color: ${hexToRGBA(colorStringFromType(props), 0.4)};
+    background-color: ${hexToRGBA(colorFromStatus(props), 0.16)};
+    border-color: ${hexToRGBA(colorFromStatus(props), 0.4)};
   }
 `;
 
@@ -172,14 +173,13 @@ const IconButton = (props: ButtonProps) => css`
     ${props.iconPlacement && props.iconPlacement === 'right'
       ? 'margin-left: 0.75rem'
       : 'margin-right: 0.75rem'};
-    fill: ${colorStringFromType(props)};
+    fill: ${colorFromStatus(props)};
     width: 1rem;
     height: 1rem;
   }
 `;
 
-const IconOnly = (props: ButtonProps) => {
-  return `
+const IconOnly = (props: ButtonProps) => css`
   svg {
     margin: 0;
     fill: ${getIconColor(props)};
@@ -187,8 +187,20 @@ const IconOnly = (props: ButtonProps) => {
     height: 1rem;
   }
 `;
-};
 
+const SpinnerOverlay = styled.div<ButtonProps>`
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255, 0.7);
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 const StyledButton = styled.button<ButtonProps>`
   ${props => BaseStyle(props)}
   ${props => HoverStyle(props)}
@@ -201,4 +213,4 @@ const StyledButton = styled.button<ButtonProps>`
   ${transitions(['border-color', 'box-shadow', 'background-color'], 0.15, 'ease-in')}
 `;
 
-export { StyledButton };
+export { StyledButton, colorFromStatus, SpinnerOverlay };

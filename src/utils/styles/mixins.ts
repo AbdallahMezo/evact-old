@@ -5,7 +5,7 @@ import { Size } from 'utils/types';
  * @param {Size} size
  * @returns {Number} pixels
  */
-export function getSizePixels(size: Size): number {
+export function getSizePixels(size?: Size): number {
   switch (size) {
     case 'tiny':
       return 24;

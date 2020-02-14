@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 
-import { Button, Icon, Spinner } from 'evact'
+import { Button, Icon, Spinner, Checkbox } from 'evact'
 
 export default class App extends Component {
   render () {
     return (
         <div style={{padding: 100}}>
+          <Checkbox labelStyle={{ color: 'red', fontSize: '90px'}} label="Check me " onChange={(...checked) => console.log(checked)} aria-label="bla"/><br />
+          <Checkbox status="danger" label="Check me " onChange={(checked) => console.log(checked)}/><br />
+          <Checkbox status="warning" label="Check me" indeterminate onChange={(checked) => console.log(checked)}/><br />
+          <br />
+          <Button status="warning" outline size="medium" isLoading>Success</Button><br />
+          <br />
           <Button status="primary" icon="star" iconOnly/>
           <br />
           <br />
@@ -33,6 +39,7 @@ export default class App extends Component {
           <br />
           <Icon status="github" fill="red" onClick={(e) => console.log(e)}/><br />
           <Spinner /><br />
+          <Spinner color="blue"/><br />
         </div>
     )
   }
