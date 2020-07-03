@@ -16,6 +16,20 @@ const borderColor = (props: SpinnerProps) => {
   return `${color} transparent ${color} ${color}`;
 }
 
+const SpinnerOverlay = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255, 0.7);
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
 const StyledSpinner = styled.span<SpinnerProps>`
   display: block;
   width: ${props => spinnerWidth(props)}px;
@@ -27,4 +41,4 @@ const StyledSpinner = styled.span<SpinnerProps>`
   ${spin};
 `;
 
-export { StyledSpinner };
+export { StyledSpinner, SpinnerOverlay };

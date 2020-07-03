@@ -188,19 +188,6 @@ const IconOnly = (props: ButtonProps) => css`
   }
 `;
 
-const SpinnerOverlay = styled.div<ButtonProps>`
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255,255,255, 0.7);
-  position: absolute;
-  z-index: 999;
-  top: 0;
-  left: 0;
-  opacity: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
 const StyledButton = styled.button<ButtonProps>`
   ${props => BaseStyle(props)}
   ${props => HoverStyle(props)}
@@ -213,4 +200,4 @@ const StyledButton = styled.button<ButtonProps>`
   ${transitions(['border-color', 'box-shadow', 'background-color'], 0.15, 'ease-in')}
 `;
 
-export { StyledButton, colorFromStatus, SpinnerOverlay };
+export { StyledButton, colorFromStatus };

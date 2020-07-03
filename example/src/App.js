@@ -1,11 +1,38 @@
 import React, { Component } from 'react'
 
-import { Button, Icon, Spinner, Checkbox } from 'evact'
+import { Button, Icon, Spinner, Checkbox, TextInput } from 'evact'
 
 export default class App extends Component {
   render () {
     return (
         <div style={{padding: 100}}>
+        <div style={{width: 200}}>
+          <TextInput
+            label="username"
+            status="info"
+            placeholder="Please Enter your name"
+            icon="star"
+            aria-label="text"
+            aria-describedby="bla"
+          />
+        </div>
+        <br />
+        <TextInput status="info" placeholder="Please Enter your name" value="I am abdallah" icon="star"/>
+        <br />
+          <br />
+          <TextInput status="info" placeholder="Please Enter your name" disabled value="I am abdallah"/>
+          <br />
+          <br />
+          <TextInput status="success" value="controlled value" isClearable placeholder="Success Input" aria-label="hello world"/>
+          <br />
+          <br />
+          <TextInput status="danger" width={150} className="className" onChange={value => console.log(value)}/>
+          <br />
+          <br />
+          <TextInput status="warning" size="giant" fullWidth/>
+
+          <br/>
+          <br/>
           <Checkbox labelStyle={{ color: 'red', }} label="Check me " onChange={(...checked) => console.log(checked)} aria-label="bla"/><br />
           <Checkbox status="danger" label="Check me " onChange={(checked) => console.log(checked)}/><br />
           <Checkbox status="warning" label="Check me" disabled checked onChange={(...checked) => console.log(checked)}/><br />

@@ -52,7 +52,7 @@ function Checkbox(props: CheckboxProps) {
             hidden
           />
           <span>
-            <Icon type={indeterminate ? "minus" : "checkmark"} width="70%" fill="outlined"/>
+            <Icon type={indeterminate ? "minus" : "checkmark"} fill="outlined"/>
           </span>
           {label && <span>{label}</span>}
         </React.Fragment>

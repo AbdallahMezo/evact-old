@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { StyledButton, colorFromStatus, SpinnerOverlay } from './StyledButton';
+import { StyledButton, colorFromStatus } from './StyledButton';
 import { Size, Status } from 'utils/types';
 import Icon from 'components/Icon';
 import { ThemeConsumer, ThemeConsumerProps } from 'theme';
 import Spinner from 'components/Spinner';
 import { lightenDarkenColor } from 'utils';
+import { SpinnerOverlay } from 'components/Spinner/StyledSpinner';
 
 export type ButtonStatus = Status | 'outline' | 'control';
 
@@ -47,7 +48,7 @@ function Button(props: ButtonProps): JSX.Element {
 
     return (
       <StyledButton {...props}>
-        <SpinnerOverlay {...props}>
+        <SpinnerOverlay>
           <Spinner
             size={size}
             width={20}

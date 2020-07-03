@@ -43,6 +43,7 @@ const BaseStyle = (props: CheckboxProps) => css`
 
 const CheckedStyle = (props: CheckboxProps) => css`
   svg {
+    width: 75%;
     opacity: ${props.checked ? 1 : 0};
     ${transitions('opacity', 0.15, 'ease-in')};
     fill: #fff;
@@ -103,4 +104,4 @@ const StyledCheckbox = styled.label<CheckboxProps>`
 `
 
 
-export {StyledCheckbox};
+export { StyledCheckbox };
